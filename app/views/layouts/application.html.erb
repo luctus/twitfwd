@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Twitfwd</title>
+  <%= stylesheet_link_tag    "application", :media => "all" %>
+  <%= javascript_include_tag "application" %>
+  <%= csrf_meta_tags %>
+</head>
+<body>
+
+<div class="navbar navbar-fixed-top">
+  <div class="navbar-inner">
+    <div class="container">
+      <div class="brand">
+        <a href="#">TwitFwd</a>
+      </div>
+      <div class="container nav-collapse">
+      
+        <ul class="nav">
+          <li><%= link_to "Tweets", tweets_path %></li>
+          <li><%= link_to "Directs", directs_path %></li>
+          <li><%= link_to "Tweets forwarding", hashtags_path %></li>
+        </ul>
+      
+        <ul class="nav pull-right">
+          <% if current_user %>
+            <li><%= link_to "@"+current_user.nickname, '#' %></li>
+            <li><%= link_to "Sign out", signout_path %></li>
+          <% else %>
+            <li><%= link_to "Sign in", '/auth/twitter' %></li>
+          <% end %>
+        </ul>
+
+      </div>
+      
+      
+    </div>
+  </div>
+</div>
+
+<div class="container">
+
+  <% flash.each do |name, msg| %>
+    <div class="alert alert-<%= name == :notice ? "success" : "error" %>">
+      <a class="close" data-dismiss="alert">×</a>
+      <%= msg %>
+    </div>
+  <% end %>
+
+  <div class="row">
+    <div class="span9">
+      <%= yield %>
+    </div>
+    <div class="span3">
+      <h2>About</h2>
+      Twitfwd.com is not another twitter client, it's a robot; so you can use it with your favorite twitter client.
+    </div>
+  </div>
+</div>
+
+</body>
+</html>

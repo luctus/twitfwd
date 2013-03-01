@@ -1,0 +1,10 @@
+<%= simple_form_for @hashtag, :html => { :class => 'form-horizontal' } do |f| %>
+  
+  <%= f.input :tag %>
+  <%= f.input :forward_to %>
+  <div class="form-actions">
+    <%= f.button :submit, :class => 'btn-primary' %>
+    <%= link_to t('.cancel', :default => t("helpers.links.cancel")),
+                hashtags_path, :class => 'btn' %>
+  </div>
+<% end %>

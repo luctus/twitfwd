@@ -1,0 +1,11 @@
+<%= simple_form_for @tweet, :html => { :class => 'form-horizontal' } do |f| %>
+  
+  <%= f.input :username %>
+  <%= f.input :message, :input_html => { :rows => 3, :style => 'width:100%;' } %>
+
+  <div class="form-actions">
+    <%= f.submit nil, :class => 'btn btn-primary' %>
+    <%= link_to t('.cancel', :default => t("helpers.links.cancel")),
+                tweets_path, :class => 'btn' %>
+  </div>
+<% end %>
