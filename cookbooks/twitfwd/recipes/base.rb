@@ -1,6 +1,7 @@
 include_recipe 'apt'
 include_recipe 'timezone'
 include_recipe 'screen'
+include_recipe 'sqlite'
 
 package 'curl'
 package 'git-core'

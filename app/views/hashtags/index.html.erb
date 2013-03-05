@@ -14,8 +14,8 @@
   <tbody>
     <% @hashtags.each do |hashtag| %>
       <tr>
-        <td><%= hashtag.tag %></td>
-        <td><%= hashtag.forward_to %></td>
+        <td>#<%= hashtag.tag %></td>
+        <td>@<%= hashtag.forward_to %></td>
         <td><%= hashtag.meaning %></td>
         <td>
           <%= link_to t('.edit', :default => t("helpers.links.edit")),
