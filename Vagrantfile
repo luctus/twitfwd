@@ -10,7 +10,7 @@ Vagrant::Config.run do |config|
   config.vm.box = "precise64"
 
   config.vm.customize ["modifyvm", :id, "--memory", "460"]
-  config.vm.customize ["modifyvm", :id, "--name", "twitfwd3"]
+  config.vm.customize ["modifyvm", :id, "--name", "twitfwd"]
 
   # The url from where the 'config.vm.box' box will be fetched if it
   # doesn't already exist on the user's system.
@@ -37,7 +37,7 @@ Vagrant::Config.run do |config|
   # Share an additional folder to the guest VM. The first argument is
   # an identifier, the second is the path on the guest to mount the
   # folder, and the third is the path on the host to the actual folder.
-  config.vm.share_folder "v-data", "/var/www/vhosts/twitfwd", "."
+  config.vm.share_folder "v-data", "/twitfwd", "."
 
   # Enable provisioning with Puppet stand alone.  Puppet manifests
   # are contained in a directory path relative to this Vagrantfile.
@@ -66,16 +66,16 @@ Vagrant::Config.run do |config|
   # path, and data_bags path (all relative to this Vagrantfile), and adding
   # some recipes and/or roles.
   #
-  #config.vm.provision :chef_solo do |chef|
-  #  chef.log_level = :info
-  #  chef.cookbooks_path = "cookbooks"
-  #  chef.add_recipe "twitfwd::app"
-    #chef.add_recipe "neufert::vagrant"
-    # chef.add_recipe "nimrod::data"
-  #  chef.json = {
-  #    user: "vagrant"
-  #  }
-  #end
+  config.vm.provision :chef_solo do |chef|
+    chef.log_level = :info
+    chef.cookbooks_path = "cookbooks"
+    chef.add_recipe "twitfwd::app"
+    chef.add_recipe "twitfwd::vagrant"
+    #chef.add_recipe "nimrod::data"
+    chef.json = {
+      user: "vagrant"
+    }
+  end
 
   # Enable provisioning with chef server, specifying the chef server URL,
   # and the path to the validation key (relative to this Vagrantfile).
